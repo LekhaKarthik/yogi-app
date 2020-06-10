@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import '../constants.dart';
 
-Color fillcolor = Color(0xFFffcac2);
+Color fillColor = Color(0xFFffcac2);
 
 class AsanaButton extends StatelessWidget {
-  AsanaButton({this.asanaName, this.asanaNumber, this.onPressed});
-  final String asanaName;
+  AsanaButton({this.asanaNumber, this.onPressed});
   final int asanaNumber;
   final Function onPressed;
   @override
@@ -19,7 +18,7 @@ class AsanaButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
         ),
-        fillColor: fillcolor,
+        fillColor: fillColor,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -28,7 +27,7 @@ class AsanaButton extends StatelessWidget {
               height: 160.0,
             ),
             Text(
-              asanaName,
+              asanaList.getAsanaName(asanaNumber - 1),
               style: kAsanaNameStyle,
             ),
           ],
