@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:yogi/constants.dart';
+import 'camera_screen.dart';
+import 'package:camera/camera.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:path/path.dart';
 
-int timeNeeded = 30;
+int timeNeeded = 1;
 
 class TimerPage1 extends StatefulWidget {
   @override
@@ -28,7 +32,7 @@ class _TimerPage1State extends State<TimerPage1> {
                 ),
               ),
               Text(
-                's',
+                'min',
                 style: kAppHeadingStyle,
               ),
             ],
@@ -36,8 +40,8 @@ class _TimerPage1State extends State<TimerPage1> {
         ),
         Slider(
           value: timeNeeded.toDouble(),
-          min: 15.0,
-          max: 90.0,
+          min: 1.0,
+          max: 5.0,
           onChanged: (double newValue) {
             setState(() {
               timeNeeded = newValue.round();
@@ -49,9 +53,51 @@ class _TimerPage1State extends State<TimerPage1> {
   }
 }
 
+class TimerPage2 extends StatefulWidget {
+  final CameraDescription camera;
+  TimerPage2({this.camera});
+  @override
+  _TimerPage2State createState() => _TimerPage2State();
+}
+
+class _TimerPage2State extends State<TimerPage2> {
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => TakePictureScreen(
+                camera: widget.camera,
+              ),
+            ),
+          );
+        });
+      },
+      child: Container(
+        margin: EdgeInsets.only(top: 15.0),
+        color: Color(0xFF900c3f),
+        child: Center(
+          child: Text(
+            'START',
+            style: TextStyle(
+              fontSize: 30.0,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class TimerPage extends StatelessWidget {
-  TimerPage({this.asanaNumber});
+  TimerPage({this.asanaNumber, @required this.camera});
   final int asanaNumber;
+  final CameraDescription camera;
   @override
   Widget build(BuildContext context) {
     String asanaName = asanaList.getAsanaName(asanaNumber - 1);
@@ -91,7 +137,7 @@ class TimerPage extends StatelessWidget {
                     Container(
                       margin: EdgeInsets.all(16.0),
                       child: Text(
-                        'Time Needed to get into $asanaName Pose',
+                        'How long do you wanna stay in $asanaName Pose',
                         style: TextStyle(
                           fontSize: 18.0,
                           fontWeight: FontWeight.bold,
@@ -105,22 +151,7 @@ class TimerPage extends StatelessWidget {
           ),
           Expanded(
             flex: 1,
-            child: GestureDetector(
-              child: Container(
-                margin: EdgeInsets.only(top: 15.0),
-                color: Color(0xFF900c3f),
-                child: Center(
-                  child: Text(
-                    'START',
-                    style: TextStyle(
-                      fontSize: 30.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            child: TimerPage2(camera: camera),
           ),
         ],
       ),
