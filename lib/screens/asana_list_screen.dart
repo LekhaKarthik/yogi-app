@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yogi/constants.dart';
 import '../constants.dart';
 import '../components/asana_button.dart';
-import 'timer_screen.dart';
+import 'setTime_screen.dart';
 import 'package:camera/camera.dart';
 
 class AsanaPage extends StatefulWidget {
@@ -18,6 +18,7 @@ class AsanaPage extends StatefulWidget {
 class _AsanaPageState extends State<AsanaPage> {
   @override
   Widget build(BuildContext context) {
+    print('********  Building asana page');
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -28,7 +29,6 @@ class _AsanaPageState extends State<AsanaPage> {
       body: GridView.count(
         primary: false,
         crossAxisCount: 2,
-//        padding: EdgeInsets.all(10.0),
         children: <Widget>[
           AsanaButton(
             asanaNumber: 1,
@@ -37,7 +37,7 @@ class _AsanaPageState extends State<AsanaPage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => TimerPage(
+                    builder: (context) => SetTimePage(
                       asanaNumber: 1,
                       camera: widget.camera,
                     ),
@@ -51,12 +51,14 @@ class _AsanaPageState extends State<AsanaPage> {
             onPressed: () {
               setState(() {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => TimerPage(
-                              asanaNumber: 2,
-                              camera: widget.camera,
-                            )));
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SetTimePage(
+                      asanaNumber: 2,
+                      camera: widget.camera,
+                    ),
+                  ),
+                );
               });
             },
           ),
@@ -65,12 +67,14 @@ class _AsanaPageState extends State<AsanaPage> {
             onPressed: () {
               setState(() {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => TimerPage(
-                              asanaNumber: 3,
-                              camera: widget.camera,
-                            )));
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SetTimePage(
+                      asanaNumber: 3,
+                      camera: widget.camera,
+                    ),
+                  ),
+                );
               });
             },
           ),
@@ -79,12 +83,14 @@ class _AsanaPageState extends State<AsanaPage> {
             onPressed: () {
               setState(() {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => TimerPage(
-                              asanaNumber: 4,
-                              camera: widget.camera,
-                            )));
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SetTimePage(
+                      asanaNumber: 4,
+                      camera: widget.camera,
+                    ),
+                  ),
+                );
               });
             },
           ),
@@ -93,12 +99,14 @@ class _AsanaPageState extends State<AsanaPage> {
             onPressed: () {
               setState(() {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => TimerPage(
-                              asanaNumber: 5,
-                              camera: widget.camera,
-                            )));
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SetTimePage(
+                      asanaNumber: 5,
+                      camera: widget.camera,
+                    ),
+                  ),
+                );
               });
             },
           ),
@@ -107,12 +115,14 @@ class _AsanaPageState extends State<AsanaPage> {
             onPressed: () {
               setState(() {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => TimerPage(
-                              asanaNumber: 6,
-                              camera: widget.camera,
-                            )));
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SetTimePage(
+                      asanaNumber: 6,
+                      camera: widget.camera,
+                    ),
+                  ),
+                );
               });
             },
           ),
@@ -121,12 +131,14 @@ class _AsanaPageState extends State<AsanaPage> {
             onPressed: () {
               setState(() {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => TimerPage(
-                              asanaNumber: 7,
-                              camera: widget.camera,
-                            )));
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SetTimePage(
+                      asanaNumber: 7,
+                      camera: widget.camera,
+                    ),
+                  ),
+                );
               });
             },
           ),
@@ -135,12 +147,14 @@ class _AsanaPageState extends State<AsanaPage> {
             onPressed: () {
               setState(() {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => TimerPage(
-                              asanaNumber: 8,
-                              camera: widget.camera,
-                            )));
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SetTimePage(
+                      asanaNumber: 8,
+                      camera: widget.camera,
+                    ),
+                  ),
+                );
               });
             },
           ),

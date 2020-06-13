@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:yogi/screens/asana_list_screen.dart';
 import 'package:camera/camera.dart';
+import 'package:yogi/screens/camera_screen.dart';
+import 'package:yogi/screens/setTime_screen.dart';
+import 'package:yogi/screens/timer_page.dart';
 
 Future<void> main() async {
   // Ensure that plugin services are initialized so that `availableCameras()`
@@ -11,7 +14,7 @@ Future<void> main() async {
   final cameras = await availableCameras();
 
   // Get a specific camera from the list of available cameras.
-  final firstCamera = cameras.first;
+  final firstCamera = cameras[1];
 
   runApp(
     Asanas(
@@ -48,9 +51,21 @@ class Asanas extends StatelessWidget {
           overlayColor: Color(0x29EB1555),
         ),
       ),
-      home: AsanaPage(
+      home: new AsanaPage(
         camera: camera,
       ),
+      routes: <String, WidgetBuilder>{
+        '/asanaPage': (BuildContext context) => new AsanaPage(
+              camera: camera,
+            ),
+        '/setTimePage': (BuildContext context) => new SetTimePage(
+              camera: camera,
+            ),
+        '/takePictureScreen': (BuildContext context) => new TakePictureScreen(
+              camera: camera,
+            ),
+        '/timerPage': (BuildContext context) => new TimerPage()
+      },
     );
   }
 }

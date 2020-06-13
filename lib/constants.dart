@@ -3,6 +3,8 @@ import 'asana_list.dart';
 
 AsanaList asanaList = AsanaList();
 
+bool showTimerPage = false;
+
 const kAppTitleStyle = TextStyle(
   fontFamily: 'Pacifico',
   fontWeight: FontWeight.bold,
