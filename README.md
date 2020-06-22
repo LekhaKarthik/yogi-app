@@ -37,9 +37,9 @@ git clone https://github.com/ssrtshah/Yoga-Posture.git
 adb reverse tcp:5000 tcp:5000
 ```
 
-6. Navigate to the following directory in the backend cloned repository.
+6. Navigate to the backend cloned repository.
 ```
-cd Yoga-Posture/OpenPose
+cd <Path to the repo in your machine>/Yoga-Posture
 ```
 
 7. Run the api.py file.
