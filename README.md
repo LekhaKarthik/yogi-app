@@ -37,7 +37,7 @@ git clone https://github.com/ssrtshah/Yoga-Posture.git
 adb reverse tcp:5000 tcp:5000
 ```
 
-6. Navigate to the following directory
+6. Navigate to the following directory in the backend cloned repository.
 ```
 cd Yoga-Posture/OpenPose
 ```
