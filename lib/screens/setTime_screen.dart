@@ -5,6 +5,8 @@ import 'package:camera/camera.dart';
 
 int timeNeeded = 1;
 
+Level selectedLevel = Level.easy;
+
 class SetTimePage1 extends StatefulWidget {
   @override
   _SetTimePage1State createState() => _SetTimePage1State();
@@ -43,6 +45,7 @@ class _SetTimePage1State extends State<SetTimePage1> {
           onChanged: (double newValue) {
             setState(() {
               timeNeeded = newValue.round();
+              time1 = newValue.round();
             });
           },
         ),
@@ -69,6 +72,8 @@ class _SetTimePage2State extends State<SetTimePage2> {
             MaterialPageRoute(
               builder: (context) => TakePictureScreen(
                 camera: widget.camera,
+                selectedLevel: selectedLevel,
+                timeNeeded: timeNeeded,
               ),
             ),
           );
@@ -93,7 +98,7 @@ class _SetTimePage2State extends State<SetTimePage2> {
 }
 
 class SetTimePage extends StatefulWidget {
-  SetTimePage({this.asanaNumber, @required this.camera});
+  SetTimePage({@required this.asanaNumber, @required this.camera});
   final int asanaNumber;
   final CameraDescription camera;
   @override
@@ -106,9 +111,24 @@ class _SetTimePageState extends State<SetTimePage> {
     String asanaName = asanaList.getAsanaName(widget.asanaNumber - 1);
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'yogi',
-          style: kAppTitleStyle,
+        title: Row(
+          children: <Widget>[
+            Hero(
+              tag: 'logo',
+              child: Image.asset(
+                'images/logo3.png',
+                fit: BoxFit.contain,
+                height: 32,
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.only(bottom: 16.0, left: 8.0),
+              child: Text(
+                'yogi',
+                style: kAppTitleStyle,
+              ),
+            ),
+          ],
         ),
       ),
       body: Column(
@@ -127,7 +147,7 @@ class _SetTimePageState extends State<SetTimePage> {
             ),
           ),
           Expanded(
-            flex: 5,
+            flex: 8,
             child: Container(
               margin: EdgeInsets.all(15.0),
               decoration: BoxDecoration(
@@ -135,10 +155,11 @@ class _SetTimePageState extends State<SetTimePage> {
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   Container(
-                    margin: EdgeInsets.all(16.0),
+//                    margin: EdgeInsets.all(16.0),
+                    margin: EdgeInsets.symmetric(horizontal: 16.0),
                     child: Text(
                       'How long do you wanna stay in $asanaName Pose',
                       style: TextStyle(
@@ -149,6 +170,95 @@ class _SetTimePageState extends State<SetTimePage> {
                     ),
                   ),
                   SetTimePage1(),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(top: 20.0),
+                    margin: EdgeInsets.all(16.0),
+                    child: Text(
+                      'Select the accuracy level you want to attain in $asanaName Pose',
+                      style: TextStyle(
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF900c3f),
+                      ),
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      RawMaterialButton(
+                        fillColor: selectedLevel == Level.easy
+                            ? Color(0xFF900c3f)
+                            : Color(0xFF252a34),
+                        child: Text(
+                          'Easy',
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                        elevation: 6.0,
+//                        highlightColor: Color(0xFFfc9d9d),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            selectedLevel = Level.easy;
+                          });
+                        },
+                      ),
+                      RawMaterialButton(
+                        fillColor: selectedLevel == Level.medium
+                            ? Color(0xFF900c3f)
+                            : Color(0xFF252a34),
+                        child: Text(
+                          'Medium',
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                        elevation: 6.0,
+//                        highlightColor: Color(0xFFfc9d9d),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            selectedLevel = Level.medium;
+                          });
+                        },
+                      ),
+                      RawMaterialButton(
+                        fillColor: selectedLevel == Level.hard
+                            ? Color(0xFF900c3f)
+                            : Color(0xFF252a34),
+                        child: Text(
+                          'Hard',
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                        elevation: 6.0,
+//                        highlightColor: Color(0xFFfc9d9d),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            selectedLevel = Level.hard;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),

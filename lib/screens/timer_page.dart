@@ -1,16 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:yogi/api.dart';
 import 'package:yogi/constants.dart';
 import 'dart:async';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class TimerPage extends StatefulWidget {
+  TimerPage({this.timeNeeded});
+  final int timeNeeded;
   @override
   _TimerPageState createState() => _TimerPageState();
 }
 
 class _TimerPageState extends State<TimerPage> {
+  final _auth = FirebaseAuth.instance;
+  FirebaseUser loggedInUser;
   Timer _timer;
-  int _start = 3;
+  int _start = time1 * 60;
   bool showHomeButton = false;
+
+  void getCurrentUser() async {
+    try {
+      final user = await _auth.currentUser();
+      if (user != null) {
+        loggedInUser = user;
+        print(loggedInUser.email);
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
 
   void startTimer() {
     const oneSec = const Duration(seconds: 1);
@@ -32,10 +50,18 @@ class _TimerPageState extends State<TimerPage> {
   @override
   void initState() {
     super.initState();
+    getCurrentUser();
     startTimer();
   }
 
   Widget goHomeButton() {
+    if (showHomeButton == true) {
+      url = 'http://127.0.0.1:5000';
+      url +=
+          '/updateActivity?userid=${loggedInUser.email}&minutes=${widget.timeNeeded}';
+      data = getData(url);
+      print(data);
+    }
     return showHomeButton == true
         ? FloatingActionButton(
             backgroundColor: Color(0xFF900c3f),
@@ -58,9 +84,24 @@ class _TimerPageState extends State<TimerPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'yogi',
-          style: kAppTitleStyle,
+        title: Row(
+          children: <Widget>[
+            Hero(
+              tag: 'logo',
+              child: Image.asset(
+                'images/logo3.png',
+                fit: BoxFit.contain,
+                height: 32,
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.only(bottom: 16.0, left: 8.0),
+              child: Text(
+                'yogi',
+                style: kAppTitleStyle,
+              ),
+            ),
+          ],
         ),
       ),
       body: Container(

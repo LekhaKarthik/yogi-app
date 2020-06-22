@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:yogi/screens/asana_list_screen.dart';
 import 'package:camera/camera.dart';
 import 'package:yogi/screens/camera_screen.dart';
+import 'package:yogi/screens/profile_screen.dart';
 import 'package:yogi/screens/setTime_screen.dart';
 import 'package:yogi/screens/timer_page.dart';
+import 'package:yogi/screens/welcome_screen.dart';
+import 'package:yogi/screens/login_screen.dart';
+import 'package:yogi/screens/register_screen.dart';
 
 Future<void> main() async {
   // Ensure that plugin services are initialized so that `availableCameras()`
@@ -14,7 +18,7 @@ Future<void> main() async {
   final cameras = await availableCameras();
 
   // Get a specific camera from the list of available cameras.
-  final firstCamera = cameras[1];
+  final firstCamera = cameras[0];
 
   runApp(
     Asanas(
@@ -51,18 +55,31 @@ class Asanas extends StatelessWidget {
           overlayColor: Color(0x29EB1555),
         ),
       ),
-      home: new AsanaPage(
+      home: new WelcomePage(
         camera: camera,
       ),
       routes: <String, WidgetBuilder>{
+        '/welcome_screen': (BuildContext context) => new WelcomePage(
+              camera: camera,
+            ),
+        '/login_screen': (BuildContext context) => new LoginPage(
+              camera: camera,
+            ),
+        '/registration_screen': (BuildContext context) => new RegistrationPage(
+              camera: camera,
+            ),
+        '/profile_screen': (BuildContext context) => new ProfilePage(),
         '/asanaPage': (BuildContext context) => new AsanaPage(
               camera: camera,
             ),
         '/setTimePage': (BuildContext context) => new SetTimePage(
+              asanaNumber: 0,
               camera: camera,
             ),
         '/takePictureScreen': (BuildContext context) => new TakePictureScreen(
               camera: camera,
+              selectedLevel: selectedLevel,
+              timeNeeded: 0,
             ),
         '/timerPage': (BuildContext context) => new TimerPage()
       },
