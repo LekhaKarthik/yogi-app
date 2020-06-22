@@ -26,7 +26,7 @@ Or if you are using Android Studio just click "Pub get" button which comes when 
 git clone https://github.com/ssrtshah/Yoga-Posture.git
 ```
 
-2. Follow the steps given in the README.md file in that repository to install necessary packages.
+2. Follow the steps given in the [README.md](https://github.com/ssrtshah/Yoga-Posture/blob/master/README.md) file in that repository to install necessary packages.
 
 3. Install ADB using the instructions given in this [link](https://www.xda-developers.com/install-adb-windows-macos-linux/)
 
