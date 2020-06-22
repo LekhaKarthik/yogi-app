@@ -1,6 +1,7 @@
 # yogi
 
 Your Personal AI Yoga Trainer.
+
 Get your yoga posture to a perfect one without a trainer besides you.
 
 ## Steps to download and run this app.
