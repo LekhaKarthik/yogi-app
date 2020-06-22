@@ -1,16 +1,19 @@
 # yogi
 
-A new Flutter application.
+Your Personal AI Yoga Trainer.
+Get your yoga posture to a perfect one without a trainer besides you.
 
-## Getting Started
+## Steps to download and run this app.
 
-This project is a starting point for a Flutter application.
+Git clone this repository using the below link:
+```
+https://github.com/LekhaKarthik/yogi-app.git
+```
 
-A few resources to get you started if this is your first Flutter project:
+Open the cloned folder and run the following command to install the necessary packages and dependencies:
+```
+flutter pub get
+```
+Or if you are using Android Studio just click "Pub get" button which comes when you open pubspec.yaml file in the main directory.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+The last step is to run the "main.dart" which is located in the main directory.
